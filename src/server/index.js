@@ -33,7 +33,14 @@ app.use(
 		secret: sessionSecretKey,
 		resave: false,
 		saveUninitialized: true,
-		cookie: { secure: true }
+		cookie: {
+			secure: true,
+			httpOnly: true,
+			domain: 'example.com', // Replace with your domain
+			expires: new Date(Date.now() + 60 * 60 * 1000), // 1 hour
+			path: '/'
+		},
+		name: 'session_id' // Custom session cookie name
 	})
 );
 app.use(csrf());
